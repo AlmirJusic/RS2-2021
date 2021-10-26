@@ -11,7 +11,7 @@ using eProdaja.Model.Requests;
 
 namespace eProdaja.Controllers
 {
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     [ApiController]
     public class KorisniciController : ControllerBase
     {
@@ -24,10 +24,15 @@ namespace eProdaja.Controllers
 
         // GET: api/Korisnicis
         [HttpGet]
-        public IEnumerable<Model.Korisnici> Get()
+        public IEnumerable<Model.Korisnici> Get([FromQuery] KorisniciSearchRequest request)
         {
-            return _service.Get();
+            return _service.Get(request);
         }
+        //[HttpGet("{id")]
+        //public IEnumerable<Model.Korisnici> GetById()
+        //{
+        //    return _service.GetById();
+        //}
         [HttpPost]
         public Model.Korisnici Insert([FromBody]KorisniciInsertRequest request)
         {
